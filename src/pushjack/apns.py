@@ -526,6 +526,7 @@ class APNSMessage(object):
         thread_id=None,
         extra=None,
         max_payload_length=None,
+        interruption_level=None
     ):
         self.message = message
         self.badge = badge
@@ -543,6 +544,7 @@ class APNSMessage(object):
         self.thread_id = thread_id
         self.extra = extra
         self.max_payload_length = max_payload_length
+        self.interruption_level = interruption_level
 
     def _construct_dict(self, message=None):
         """Return message as dictionary, overriding message."""
@@ -579,6 +581,7 @@ class APNSMessage(object):
             {
                 "alert": alert,
                 "badge": self.badge,
+                'interruption-level': self.interruption_level,
                 "sound": self.sound,
                 "category": self.category,
                 "content-available": 1 if self.content_available else None,
